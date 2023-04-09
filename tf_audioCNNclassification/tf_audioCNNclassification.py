@@ -52,7 +52,7 @@ def create_img(wav_path="短文音声/test/thiswas",wav_name=['jpn','us'],img_pa
                 D = librosa.feature.mfcc(y=wav,sr=sr,n_mfcc=20)
                 # y->波形データ, sr ->サンプリングレート, n_mfcc->最後の低次元抽出で何次元とるか
             elif feature==2:
-                D = librosa.feature.melspectrogram(y=wav, sr=sr,n_mfcc=20)
+                D = librosa.feature.melspectrogram(y=wav, sr=sr)
             S, phase = librosa.magphase(D)  # 複素数を強度と位相へ変換
             Sdb = librosa.amplitude_to_db(S)  # 強度をdb単位へ変換
             plt.figure(figsize=(2, 2), dpi=200)
