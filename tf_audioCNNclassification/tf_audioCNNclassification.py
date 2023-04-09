@@ -61,9 +61,6 @@ def create_img(wav_path="短文音声/test/thiswas",wav_name=['jpn','us'],img_pa
             plt.savefig(f"{f_path}/data/{img_path}/{folder[y]}/{folder[y]}_{i}.png")
             plt.close()
 
-    im = cv2.imread(f"{f_path}/data/{img_path}/{folder[y]}/{folder[0]}_{0}.png")
-    print("高さ",im.shape[0]," px, 幅",im.shape[1]," px")
-
 
 # データセットの読み込みとデータ形式の設定・正規化・分割、畳み込みニューラルネットワーク（CNN）・学習の実行等
 def training_CNN(model_name='cnn_model.h5',train_data_path="短文音声/画像/training/thiswas(mel)"):
