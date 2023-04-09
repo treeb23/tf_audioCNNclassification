@@ -126,6 +126,7 @@ tfacc.create_img(wav_path="短文音声/test/thiswas",wav_name=['jpn','us'],img_
 
 ### 学習する
 
+学習時に学習画像をおくディレクトリの親ディレクトリにcsv,txtが生成される
 ```py
 tfacc.training_CNN(model_name='cnn_model.h5',train_data_path="短文音声/画像/training/thiswas(mel)")
 ```
@@ -136,3 +137,4 @@ tfacc.training_CNN(model_name='cnn_model.h5',train_data_path="短文音声/画�
 ```py
 tfacc.pred(model_name='cnn_model.h5',test_data_path="短文音声/画像/training/thiswas(mel)",file_nums=[10,10],view_model=True)
 ```
+
