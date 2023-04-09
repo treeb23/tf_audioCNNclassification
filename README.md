@@ -64,17 +64,10 @@ import tf_audioCNNclassification as tfacc
 
 モデルの学習,テストの前には`set_param()`でパラメータを変更する。
 ```py
-tfacc.set_param(trainwavpath="短文音声/test/thiswas",wavname=['jp','us'],trainimgpath="短文音声/画像/training/thiswas(mel)",imgname=['jp','us'],filenum=[10,10],imgsize=200,color=1,epochnum=10,batchsize=32,featuren=0)
+tfacc.set_param(imgname=['jp','us'],imgsize=200,color=1,epochnum=10,batchsize=32,featuren=0)
 ```
-`trainwavpath` : 学習に用いる音声のパス
-
-`wavname` : 学習に用いる音声のファイル名2つ(['a','b']の形式)`{wavname}_1.wav`
-
-`trainimgpath` : 学習に用いる画像のパス
 
 `imgname` : 学習/テストに用いる画像のファイル名2つ(['a','b']の形式)`{imgname}_1.png`
-
-`filenum` : 音声/画像のファイル数2つ([10,20]の形式),この場合aが10,bが20個
 
 `imgsize` : 縦と横のピクセル数
 
@@ -123,19 +116,23 @@ tfacc.set_param(trainwavpath="短文音声/test/thiswas",wavname=['jp','us'],tra
 
 ### 音声から画像を用意する
 
+`wav_name` : 学習に用いる音声のファイル名2つ(['a','b']の形式)`{wav_name}_1.wav`
+
+`file_nums` : 音声/画像のファイル数2つ([10,20]の形式),この場合aが10,bが20個
+
 ```py
-tfacc.create_img()
+tfacc.create_img(wav_path="短文音声/test/thiswas",wav_name=['jpn','us'],img_path="短文音声/画像/training/thiswas(mel)",file_nums=[10,10]):
 ```
 
-### 音声から画像を用意する
+### 学習する
 
 ```py
-tfacc.training_CNN(model_name='cnn_model.h5')
+tfacc.training_CNN(model_name='cnn_model.h5',train_data_path="短文音声/画像/training/thiswas(mel)")
 ```
 
 ### テストする
 
 モデルのネットワーク図を出力するには`view_model=True`とする(デフォルト)
 ```py
-tfacc.pred(model_name='cnn_model.h5',test_data_path="短文音声/画像/training/thiswas(mel)",view_model=True)
+tfacc.pred(model_name='cnn_model.h5',test_data_path="短文音声/画像/training/thiswas(mel)",file_nums=[10,10],view_model=True)
 ```
