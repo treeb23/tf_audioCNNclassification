@@ -84,6 +84,7 @@ tfacc.set_param(imgname=['jp','us'],imgsize=200,color=1,epochnum=10,batchsize=32
 1: librosa.feature.mfcc(y=wav,sr=sr,n_mfcc=20)
 2: librosa.feature.melspectrogram(y=wav, sr=sr)
 ```
+参考資料 : [Qiita _ 機械学習のための音声の特徴量ざっくりメモ](https://qiita.com/yutalfa/items/dbd172138db60d461a56)
 
 
 ## trainingの方法
@@ -134,6 +135,8 @@ tfacc.training_CNN(model_name='cnn_model.h5',train_data_path="短文音声/画�
 ### テストする
 
 モデルのネットワーク図を出力するには`view_model=True`とする(デフォルト)
+
+返り値としてラベルと予測結果が一致している確率を配列として得られる
 ```py
 tfacc.pred(model_name='cnn_model.h5',test_data_path="短文音声/画像/training/thiswas(mel)",file_nums=[10,10],view_model=True)
 ```
