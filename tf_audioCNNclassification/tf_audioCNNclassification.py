@@ -18,7 +18,7 @@ import datetime
 from keras.models import model_from_json, load_model
 
 
-def set_param(trainwavpath="短文音声/test/thiswas",wavname=['jp','us'],trainimgpath="短文音声/画像/training/thiswas(mel)",imgname=['jp','us'],filenum=[10,10],imgsize=200,color=1,epochnum=10,batchsize=32,featuren=0):
+def set_param(trainwavpath="短文音声/test/thiswas",wavname=['jp','us'],trainingpath="短文音声/画像/training/thiswas(mel)",imgname=['jp','us'],filenum=[10,10],imgsize=200,color=1,epochnum=10,batchsize=32,featuren=0):
     global f_path,train_wav_path,wav_name,train_data_path,folder,file_nums,image_size,color_setting,epoch,batch,feature
     f_path=".."
     try:
@@ -31,7 +31,7 @@ def set_param(trainwavpath="短文音声/test/thiswas",wavname=['jp','us'],train
     print(f"[ファイルパスf_pathを'{f_path}'に設定]")
     train_wav_path=trainwavpath
     wav_name=wavname
-    train_data_path=trainimgpath
+    train_data_path=trainingpath
     folder=imgname #必ず半角英数
     file_nums=filenum
     image_size=imgsize
