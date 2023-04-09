@@ -133,7 +133,7 @@ tfacc.create_img()
 tfacc.training_CNN(model_name='cnn_model.h5')
 ```
 
-### 音声から画像を用意する
+### テストする
 
 モデルのネットワーク図を出力するには`view_model=True`とする(デフォルト)
 ```py
