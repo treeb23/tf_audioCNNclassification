@@ -135,12 +135,11 @@ def training_CNN(model_name='cnn_model.h5',train_data_path="短文音声/画像/
 # 予測と結果
 def pred(model_name='cnn_model.h5',test_data_path="短文音声/画像/training/thiswas(mel)",file_nums=[10,10],view_model=True):
     model = load_model(f'{f_path}/code/save_model/{model_name}')
-    y=0
     exports=0
     export= [[0 for j in range(2)] for i in range(max(file_nums))]
-    for t in folder:
-        for x in range(file_nums[y]):
-            recognize_image = f'{f_path}/data/{test_data_path}/{folder[y]}/{folder[y]}_{x}.png'
+    for t in range(len(folder)):
+        for x in range(file_nums[t]):
+            recognize_image = f'{f_path}/data/{test_data_path}/{folder[t]}/{folder[t]}_{x}.png'
             print(recognize_image)
             img = cv2.imread(recognize_image, 1)
             img = cv2.resize(img, (image_size, image_size))
@@ -148,11 +147,10 @@ def pred(model_name='cnn_model.h5',test_data_path="短文音声/画像/training/
             prediction = model.predict(np.array([img]), batch_size=batch, verbose=0)
             result = prediction[0]
             for i, accuracy in enumerate(result):
-                export[x][y]=int(accuracy*100)
+                export[x][t]=int(accuracy*100)
                 #print('「', folder[i], '」の確率を', int(accuracy * 100), '% と予測しました。')
-            if folder[y]==folder[result.argmax()]:
+            if folder[t]==folder[result.argmax()]:
                 exports=exports+1
-            y=y+1
     exports=exports/(file_nums[0]+file_nums[1])
     print("抽出する特徴量 : ",feature)
     print("epoch=",epoch,", batch=",batch,"image_size=",image_size)
