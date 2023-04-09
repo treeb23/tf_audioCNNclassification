@@ -119,7 +119,7 @@ def training_CNN(model_name='cnn_model.h5',train_data_path="短文音声/画像/
     hist_df = pd.DataFrame(history.history)
     hist_df.to_csv(f'{f_path}/data/{train_data_path}/rep_{feature}.csv')
 
-    model.save(model_name)
+    model.save(f'{f_path}/code/save_model/{model_name}')
 
     score = model.evaluate(x_test, y_test, verbose=0)
     print('Loss:', score[0], '（損失関数値 - 0に近いほど正解に近い）')
@@ -134,7 +134,7 @@ def training_CNN(model_name='cnn_model.h5',train_data_path="短文音声/画像/
 
 # 予測と結果
 def pred(model_name='cnn_model.h5',test_data_path="短文音声/画像/training/thiswas(mel)",file_nums=[10,10],view_model=True):
-    model = load_model(model_name)
+    model = load_model(f'{f_path}/code/save_model/{model_name}')
     y=0
     exports=0
     export= [[0 for j in range(2)] for i in range(max(file_nums))]
