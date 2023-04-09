@@ -41,9 +41,9 @@ def set_param(imgname=['jp','us'],imgsize=200,color=1,epochnum=10,batchsize=32,f
 
 
 # 画像作成
-def create_img(wav_path="短文音声/test/thiswas",wav_name=['jpn','us'],img_path="短文音声/画像/training/thiswas(mel)",file_nums=[10,10]):
+def create_img(wav_path="短文音声/test/thiswas",wav_name=['jpn','us'],img_path="短文音声/画像/training/thiswas(mel)",file_nums=[10,10],startnum=0):
     for y in range(2):
-        for i in range(file_nums[y]):
+        for i in range(startnum,file_nums[y]+startnum):
             audio_path = f"{f_path}/data/{wav_path}/{wav_name[y]}_{i}.wav"
             wav,sr=librosa.load(audio_path,sr=16000)
             if feature==0:
