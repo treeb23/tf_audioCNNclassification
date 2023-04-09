@@ -141,3 +141,5 @@ tfacc.training_CNN(model_name='cnn_model.h5',train_data_path="短文音声/画�
 tfacc.pred(model_name='cnn_model.h5',test_data_path="短文音声/画像/training/thiswas(mel)",file_nums=[10,10],view_model=True)
 ```
 
+
+(参考資料) : [Python・KerasでCNN機械学習。自作・自前画像のオリジナルデータセットで画像認識入門](https://child-programmer.com/ai/cnn-originaldataset-samplecode/)
