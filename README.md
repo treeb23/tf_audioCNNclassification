@@ -121,7 +121,7 @@ tfacc.set_param(imgname=['jp','us'],imgsize=200,color=1,epochnum=10,batchsize=32
 `file_nums` : 音声/画像のファイル数2つ([10,20]の形式),この場合aが10,bが20個
 
 ```py
-tfacc.create_img(wav_path="短文音声/test/thiswas",wav_name=['jpn','us'],img_path="短文音声/画像/training/thiswas(mel)",file_nums=[10,10]):
+tfacc.create_img(wav_path="短文音声/test/thiswas",wav_name=['jpn','us'],img_path="短文音声/画像/training/thiswas(mel)",file_nums=[10,10])
 ```
 
 ### 学習する
