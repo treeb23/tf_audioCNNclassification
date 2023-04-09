@@ -82,7 +82,7 @@ tfacc.set_param(imgname=['jp','us'],imgsize=200,color=1,epochnum=10,batchsize=32
 ```
 0: librosa.stft(wav)
 1: librosa.feature.mfcc(y=wav,sr=sr,n_mfcc=20)
-2: librosa.feature.melspectrogram(y=wav, sr=sr,n_mfcc=20)
+2: librosa.feature.melspectrogram(y=wav, sr=sr)
 ```
 
 
