@@ -43,6 +43,7 @@ def set_param(imgname=['jp','us'],imgsize=200,color=1,epochnum=10,batchsize=32,f
 # 画像作成
 def create_img(wav_path="短文音声/test/thiswas",wav_name=['jpn','us'],img_path="短文音声/画像/training/thiswas(mel)",file_nums=[10,10],startnum=0):
     for y in range(2):
+        z=0
         for i in range(startnum,file_nums[y]+startnum):
             audio_path = f"{f_path}/data/{wav_path}/{wav_name[y]}_{i}.wav"
             wav,sr=librosa.load(audio_path,sr=16000)
@@ -58,8 +59,9 @@ def create_img(wav_path="短文音声/test/thiswas",wav_name=['jpn','us'],img_pa
             plt.figure(figsize=(2, 2), dpi=200)
             librosa.display.specshow(Sdb, sr=sr, x_axis='time', y_axis='log')  # スペクトログラムを表示
             plt.subplots_adjust(left=0, right=1, bottom=0, top=1) #余白を調整
-            plt.savefig(f"{f_path}/data/{img_path}/{folder[y]}/{folder[y]}_{i}.png")
+            plt.savefig(f"{f_path}/data/{img_path}/{folder[y]}/{folder[y]}_{z}.png")
             plt.close()
+            z=z+1
 
 
 # データセットの読み込みとデータ形式の設定・正規化・分割、畳み込みニューラルネットワーク（CNN）・学習の実行等
