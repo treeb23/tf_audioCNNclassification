@@ -18,8 +18,8 @@ import datetime
 from keras.models import model_from_json, load_model
 
 
-def set_param(trainwavpath="短文音声/test/thiswas",wavname=['jp','us'],trainingpath="短文音声/画像/training/thiswas(mel)",imgname=['jp','us'],filenum=[10,10],imgsize=200,color=1,epochnum=10,batchsize=32,featuren=0):
-    global f_path,train_wav_path,wav_name,train_data_path,folder,file_nums,image_size,color_setting,epoch,batch,feature
+def set_param(imgname=['jp','us'],imgsize=200,color=1,epochnum=10,batchsize=32,featuren=0):
+    global f_path,folder,image_size,color_setting,epoch,batch,feature
     f_path=".."
     try:
         # Google Driveをcolabにマウント
@@ -29,11 +29,7 @@ def set_param(trainwavpath="短文音声/test/thiswas",wavname=['jp','us'],train
     except ModuleNotFoundError as e:
         print(e)
     print(f"[ファイルパスf_pathを'{f_path}'に設定]")
-    train_wav_path=trainwavpath
-    wav_name=wavname
-    train_data_path=trainingpath
     folder=imgname #必ず半角英数
-    file_nums=filenum
     image_size=imgsize
     if color==0:
         color_setting=1 #グレースケール
@@ -45,10 +41,10 @@ def set_param(trainwavpath="短文音声/test/thiswas",wavname=['jp','us'],train
 
 
 # 画像作成
-def create_img():
+def create_img(wav_path="短文音声/test/thiswas",wav_name=['jpn','us'],img_path="短文音声/画像/training/thiswas(mel)",file_nums=[10,10]):
     for y in range(2):
         for i in range(file_nums[y]):
-            audio_path = f"{f_path}/data/{train_wav_path}/{wav_name[y]}_{i}.wav"
+            audio_path = f"{f_path}/data/{wav_path}/{wav_name[y]}_{i}.wav"
             wav,sr=librosa.load(audio_path,sr=16000)
             if feature==0:
                 D = librosa.stft(wav) # 特徴量抽出関数
@@ -62,15 +58,15 @@ def create_img():
             plt.figure(figsize=(2, 2), dpi=200)
             librosa.display.specshow(Sdb, sr=sr, x_axis='time', y_axis='log')  # スペクトログラムを表示
             plt.subplots_adjust(left=0, right=1, bottom=0, top=1) #余白を調整
-            plt.savefig(f"{f_path}/data/{train_data_path}/{folder[y]}/{folder[y]}_{i}.png")
+            plt.savefig(f"{f_path}/data/{img_path}/{folder[y]}/{folder[y]}_{i}.png")
             plt.close()
 
-    im = cv2.imread(f"{f_path}/data/{train_data_path}/{folder[y]}/{folder[0]}_{0}.png")
+    im = cv2.imread(f"{f_path}/data/{img_path}/{folder[y]}/{folder[0]}_{0}.png")
     print("高さ",im.shape[0]," px, 幅",im.shape[1]," px")
 
 
 # データセットの読み込みとデータ形式の設定・正規化・分割、畳み込みニューラルネットワーク（CNN）・学習の実行等
-def training_CNN(model_name='cnn_model.h5'):
+def training_CNN(model_name='cnn_model.h5',train_data_path="短文音声/画像/training/thiswas(mel)"):
     class_number = len(folder)
     X_image = []
     Y_label = []
@@ -138,7 +134,7 @@ def training_CNN(model_name='cnn_model.h5'):
 
 
 # 予測と結果
-def pred(model_name='cnn_model.h5',test_data_path="短文音声/画像/training/thiswas(mel)",view_model=True):
+def pred(model_name='cnn_model.h5',test_data_path="短文音声/画像/training/thiswas(mel)",file_nums=[10,10],view_model=True):
     model = load_model(model_name)
     y=0
     exports=0
