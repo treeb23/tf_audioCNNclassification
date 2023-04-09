@@ -140,8 +140,9 @@ def pred(model_name='cnn_model.h5',test_data_path="短文音声/画像/training/
     export= [[0 for j in range(2)] for i in range(max(file_nums))]
     for t in folder:
         for x in range(file_nums[y]):
-            recognise_image = f'{f_path}/data/{test_data_path}/{folder[y]}/{folder[y]}_{x}.png'
-            img = cv2.imread(recognise_image, 1)
+            recognize_image = f'{f_path}/data/{test_data_path}/{folder[y]}/{folder[y]}_{x}.png'
+            print(recognize_image)
+            img = cv2.imread(recognize_image, 1)
             img = cv2.resize(img, (image_size, image_size))
             img = img.reshape(image_size, image_size, color_setting).astype('float32')/255
             prediction = model.predict(np.array([img]), batch_size=batch, verbose=0)
