@@ -35,27 +35,6 @@ lab/
 ```py
 !pip install librosa
 ```
-インポート
-```py
-import matplotlib.pyplot as plt
-import librosa
-import librosa.display
-import cv2
-import keras
-import glob
-import numpy as np
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from tensorflow.keras.utils import load_img, img_to_array
-from keras.models import Sequential
-from keras.layers import Conv2D, MaxPooling2D, Dense, Dropout, Flatten
-from keras.utils import np_utils
-from tensorflow.keras.optimizers import Adam
-import matplotlib.pyplot as plt
-import time
-import datetime
-from keras.models import model_from_json, load_model
-```
 このライブラリをインストールしてインポート
 ```py
 !pip install git+https://github.com/treeb23/tf_audioCNNclassification.git
